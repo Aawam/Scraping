@@ -38,6 +38,7 @@ def parsing(item_products): #Outside Link
         output.append(out)
     return output
 """
+
 def scrape_product(soup: BeautifulSoup): #Inside Link
 
     title_element = soup.find("div", id="product_details").find("h1")
@@ -45,7 +46,6 @@ def scrape_product(soup: BeautifulSoup): #Inside Link
     price = soup.find("div", id="o_wsale_cta_wrapper").find("div", class_="css_quantity input-group d-inline-flex me-2 mb-2 align-middle input-group-lg").find("span", id="priceSubtotalWrapper").get_text().replace("Total Rp","").replace("\xa0","")
     
     out = [title,price]
-
     return out
 
 if __name__ == "__main__":
@@ -69,3 +69,4 @@ if __name__ == "__main__":
     
     print(scrape)
     print(len(scrape))
+
