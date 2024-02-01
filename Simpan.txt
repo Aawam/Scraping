@@ -1,6 +1,3 @@
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd #gunakan library pandas
 
 """
 result = requests.get("https://www.bhinneka.com/jual?cari=iphone")
@@ -57,13 +54,6 @@ def convert_to_bs4_obj(src):
     soup = BeautifulSoup(src, "html.parser")
     return soup
 
-def scrape_looping(url,products_item):    
-    for url in range(1, + 1):
-        result = requests.get(f"https://www.bhinneka.com/jual?page={url}&cari=iphone&order=")
-        parsing(products_item)
-    save_to_csv()
-    return result
-
 def get_products_items(soup):
     item_products = soup.find_all("div", "o_wsale_product_grid_wrapper position-relative h-100")
     return item_products
@@ -88,27 +78,42 @@ def save_to_csv(final_output):
     df.sort_values('Price', ascending=True)
     df.to_csv('bhinneka.csv', sep = ',')
 
-
-def scrape_looping(url):
-    all_output = []
-    
-    for i in range(1, max_page + 1):
-        result = requests.get(f"https://www.bhinneka.com/jual?page={i}&cari=iphone&order=")
-        soup = convert_to_bs4_obj(result.content)
-        item_products = get_products_items(soup)
-        output = parsing(item_products)
-        all_output.extend(output)
-        
-    save_to_csv()
-    return result
-
 if __name__ == "__main__":
     src = get_html("https://www.bhinneka.com/jual?order=list_price+desc&cari=iphone")
     soup = convert_to_bs4_obj(src)
     item_products = get_products_items(soup)
     final_output = parsing(item_products)
-    looping = scrape_looping("https://www.bhinneka.com/jual?order=list_price+desc&cari=iphone")
-    save_to_csv(final_output)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def scrape()`
     for url in urls:
@@ -175,15 +180,9 @@ if __name__ == "__main__":
     save_to_csv(final_output)
 """
 
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
+    
 
-def get_html(url):
-    result = requests.get(url)
-    src = result.content
-    return src
-
+"""
 def convert_to_bs4_obj(src):
     soup = BeautifulSoup(src, "html.parser")
     return soup
@@ -235,4 +234,4 @@ if __name__ == "__main__":
     base_url = "https://www.bhinneka.com/jual?order=list_price+desc&cari=iphone"
     max_pages = 3  # Change this to the desired number of pages to scrape
     scrape_bhinneka(base_url, max_pages)
-
+"""
